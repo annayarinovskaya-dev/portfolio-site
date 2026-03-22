@@ -19,7 +19,7 @@
     --sans: 'Source Sans 3', sans-serif;
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: none; -webkit-font-smoothing: antialiased; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
   /* ── Custom cursor ── */
   #cursor { position: fixed; width: 8px; height: 8px; background: var(--text); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference; }
@@ -45,8 +45,7 @@
   }
   nav ul a {
     font-family: var(--sans); font-size: 15px; font-weight: 400;
-    color: var(--text); text-decoration: none; letter-spacing: 0.04em;
-    cursor: none; position: relative;
+    color: var(--text); text-decoration: none; letter-spacing: 0.04em; position: relative;
   }
   nav ul a::after {
     content: ''; position: absolute; bottom: -2px; left: 0; right: 100%;
@@ -69,7 +68,7 @@
   }
   .section-nav-item {
     position: relative; display: flex; align-items: center;
-    padding: 12px 0; cursor: none; text-decoration: none;
+    padding: 12px 0; text-decoration: none;
   }
   .section-nav-dot {
     width: 7px; height: 7px; border-radius: 50%;
@@ -186,7 +185,11 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 768px) {
+  
+@media (max-width: 1100px) {
+  .section-nav-label { display: none; }
+}
+@media (max-width: 768px) {
     nav { padding: 20px 24px; } nav ul { gap: 16px; flex-wrap: wrap; }
     .hero { padding: 0 24px 64px; } section { padding: 60px 24px; } .divider { margin: 0 24px; }
     .problem-grid { grid-template-columns: 1fr; } .research-split { grid-template-columns: 1fr; } .reflection-grid { flex-direction: column; } .reflection-divider { display: none; }
@@ -204,7 +207,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
 .contact-links { display: flex; gap: 24px; }
 .contact-links a {
   font-size: 12px; color: var(--text-mid, #888880);
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   position: relative; transition: color 0.2s;
 }
 .contact-links a::after {
@@ -249,6 +252,38 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   transition: opacity 0.2s;
 }
 .case-nav-link:hover .case-nav-title { opacity: 0.6; }
+
+/* ── Skip navigation ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 8px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--dark, #f0ece5);
+  color: var(--cream, #111110);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 8px; }
+
+
+/* ── Focus indicators ── */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+body.using-mouse { cursor: none; }
+
 </style>
 </head>
 <body>
@@ -256,7 +291,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
 <div id="cursor-ring"></div>
 
 
-<nav>
+<nav aria-label="Main navigation">
   <ul>
     <li><a href="index.html">← Anna Iarinovskaia</a></li>
     <li><a href="index.html#work">work</a></li>
@@ -549,6 +584,32 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
     updateSpineFill();
   });
   setTimeout(updateSpineFill, 400);
+
+    // Cursor — mouse-only
+  (function() {
+    var dot = document.getElementById('cursor');
+    var ring = document.getElementById('cursor-ring');
+    if (!dot) return;
+    dot.style.display = 'none';
+    if (ring) ring.style.display = 'none';
+    var usingMouse = false;
+    document.addEventListener('mousemove', function() {
+      if (!usingMouse) {
+        usingMouse = true;
+        document.body.classList.add('using-mouse');
+        dot.style.display = '';
+        if (ring) ring.style.display = '';
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        usingMouse = false;
+        document.body.classList.remove('using-mouse');
+        dot.style.display = 'none';
+        if (ring) ring.style.display = 'none';
+      }
+    });
+  })();
 
   // Custom cursor
   const dot = document.getElementById('cursor');

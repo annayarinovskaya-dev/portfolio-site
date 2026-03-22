@@ -34,8 +34,7 @@ body {
   font-size: 15px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  cursor: none;
-}
+  }
 
 /* ── Custom cursor ── */
 #cursor {
@@ -93,7 +92,7 @@ nav ul a {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 15px; font-weight: 400;
   color: var(--hero-text); text-decoration: none;
-  letter-spacing: 0.04em; cursor: none; position: relative;
+  letter-spacing: 0.04em; position: relative;
 }
 nav ul a::after {
   content: ''; position: absolute; bottom: -2px; left: 0; right: 100%;
@@ -116,7 +115,7 @@ nav ul a:hover::after { right: 0; }
 }
 .section-nav-item {
   position: relative; display: flex; align-items: center;
-  padding: 12px 0; cursor: none; text-decoration: none;
+  padding: 12px 0; text-decoration: none;
 }
 .section-nav-dot {
   width: 7px; height: 7px; border-radius: 50%;
@@ -284,9 +283,7 @@ nav ul a:hover::after { right: 0; }
 
 /* ── Divider ── */
 .divider {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 48px;
+  margin: 0 48px;
 }
 .divider hr {
   border: none;
@@ -534,7 +531,7 @@ nav ul a:hover::after { right: 0; }
 .full-width-section {
   background: transparent;
   padding: 80px 0;
-  margin: 60px 0;
+  margin: 0;
 }
 .full-width-section .inner {
   max-width: var(--max);
@@ -571,6 +568,10 @@ nav ul a:hover::after { right: 0; }
 
 
 /* ── Responsive ── */
+
+@media (max-width: 1100px) {
+  .section-nav-label { display: none; }
+}
 @media (max-width: 768px) {
   nav { padding: 20px 24px; } nav ul { gap: 12px; flex-wrap: wrap; }
   .section-nav { display: none; }
@@ -579,7 +580,7 @@ nav ul a:hover::after { right: 0; }
   .two-col, .img-grid-2, .img-grid-3, .img-grid-wide, .steps,
   .before-after, .impact-grid { grid-template-columns: 1fr; }
   .hero-attrs { flex-wrap: wrap; gap: 24px; }
-  .divider { padding: 0 24px; }
+  .divider { margin: 0 24px; }
   .highlight-box { padding: 32px 24px; }
 }
 /* ── Footer ── */
@@ -592,7 +593,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
 .contact-links { display: flex; gap: 24px; }
 .contact-links a {
   font-size: 12px; color: var(--text-mid, #888880);
-  text-decoration: none; cursor: none;
+  text-decoration: none;
   position: relative; transition: color 0.2s;
 }
 .contact-links a::after {
@@ -637,6 +638,38 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   transition: opacity 0.2s;
 }
 .case-nav-link:hover .case-nav-title { opacity: 0.6; }
+
+/* ── Skip navigation ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 8px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--dark, #f0ece5);
+  color: var(--cream, #111110);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 8px; }
+
+
+/* ── Focus indicators ── */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+body.using-mouse { cursor: none; }
+
 </style>
 </head>
 <body>
@@ -647,7 +680,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
 
 
 
-<nav id="mainNav">
+<nav id="mainNav" aria-label="Main navigation">
   <ul>
     <li><a href="index.html">← Anna Iarinovskaia</a></li>
     <li><a href="index.html#work">work</a></li>
@@ -923,7 +956,33 @@ window.addEventListener('scroll', () => {
   sectionItems.forEach((item, i) => item.classList.toggle('active', i === active));
 });
 
-// Custom cursor
+  // Cursor — mouse-only
+  (function() {
+    var dot = document.getElementById('cursor');
+    var ring = document.getElementById('cursor-ring');
+    if (!dot) return;
+    dot.style.display = 'none';
+    if (ring) ring.style.display = 'none';
+    var usingMouse = false;
+    document.addEventListener('mousemove', function() {
+      if (!usingMouse) {
+        usingMouse = true;
+        document.body.classList.add('using-mouse');
+        dot.style.display = '';
+        if (ring) ring.style.display = '';
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        usingMouse = false;
+        document.body.classList.remove('using-mouse');
+        dot.style.display = 'none';
+        if (ring) ring.style.display = 'none';
+      }
+    });
+  })();
+
+  // Custom cursor
 const cursor = document.getElementById('cursor');
 const ring   = document.getElementById('cursor-ring');
 let rx = 0, ry = 0;
