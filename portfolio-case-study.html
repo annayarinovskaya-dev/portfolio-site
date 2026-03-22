@@ -181,8 +181,6 @@ nav ul a:hover::after { right: 0; }
   padding: 80px 48px 80px;
   position: relative;
   overflow: hidden;
-  max-width: var(--max);
-  margin: 0 auto;
 }
 .hero-tag {
   font-size: 11px;
@@ -192,7 +190,7 @@ nav ul a:hover::after { right: 0; }
   margin-bottom: 24px;
   animation: fadeUp 0.8s ease both;
 }
-.hero h1 {
+.hero-title {
   font-family: 'Source Sans 3', sans-serif;
   font-size: clamp(48px, 7vw, 96px);
   font-weight: 700;
@@ -202,7 +200,7 @@ nav ul a:hover::after { right: 0; }
   color: var(--dark);
   animation: fadeUp 0.8s 0.1s ease both;
 }
-.hero h1 em {
+.hero-title em {
   font-style: italic;
   color: var(--mid);
 }
@@ -241,7 +239,6 @@ nav ul a:hover::after { right: 0; }
   margin: 0 auto;
   padding: 0 48px;
 }
-.hero { padding-top: calc(80px + 72px); } /* account for fixed nav height */
 .hero-image .img-frame {
   background: var(--card-bg);
   border-radius: 16px;
@@ -718,7 +715,7 @@ body.using-mouse { cursor: none; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-tag">Case Study · B2B SaaS · 2025–Present</div>
-  <h1>Property Portfolio<br><em>Management</em></h1>
+  <h1 class="hero-title">Property Portfolio<br><em>Management</em></h1>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="hero-meta-label">Role</span>
