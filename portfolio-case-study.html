@@ -573,7 +573,7 @@ nav ul a:hover::after { right: 0; }
   .section-nav-label { display: none; }
 }
 @media (max-width: 768px) {
-  nav { padding: 20px 24px; } nav ul { gap: 12px; flex-wrap: wrap; }
+  nav { padding: 20px 24px; } nav.scrolled { padding-left: 24px; padding-right: 24px; } nav ul { gap: 12px; flex-wrap: nowrap; font-size: 13px; } nav ul a { white-space: nowrap; }
   .section-nav { display: none; }
   .hero { padding: calc(72px + 48px) 24px 64px; } .case-section { padding-left: 24px; padding-right: 24px; }
   .hero-image { padding: 0 24px; }
@@ -582,6 +582,7 @@ nav ul a:hover::after { right: 0; }
   .hero-attrs { flex-wrap: wrap; gap: 24px; }
   .divider { margin: 0 24px; }
   .highlight-box { padding: 32px 24px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
 }
 /* ── Footer ── */
 footer {
@@ -682,7 +683,7 @@ body.using-mouse { cursor: none; }
 
 <nav id="mainNav" aria-label="Main navigation">
   <ul>
-    <li><a href="index.html">← Anna Iarinovskaia</a></li>
+    <li><a href="index.html">← AI</a></li>
     <li><a href="index.html#work">work</a></li>
     <li><a href="index.html#about">about</a></li>
     <li><a href="contact.html">contact</a></li>

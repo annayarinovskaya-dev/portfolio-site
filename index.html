@@ -403,7 +403,7 @@ footer p { font-size: 13px; color: var(--mid); }
 @media (max-width: 768px) {
   body { cursor: auto; }
   #cursor, #cursor-ring { display: none; }
-  nav ul { gap: 16px; justify-content: center; }
+  nav ul { justify-content: space-between; }
   nav { padding: 20px 24px; }
   .work-section, .about-section, 
   .projects-grid { grid-template-columns: 1fr; }
@@ -411,8 +411,10 @@ footer p { font-size: 13px; color: var(--mid); }
   .card-visual.large { aspect-ratio: 16/7; }
   .about-section { grid-template-columns: 1fr; gap: 40px; }
   
-  footer { flex-direction: column; gap: 16px; text-align: center; }
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
   .hero-sub { width: 100%; }
+  .work-section { padding: 56px 24px 100px; }
+  .about-section { padding: 56px 24px 100px; }
 }
 
 /* ── Skip navigation ── */

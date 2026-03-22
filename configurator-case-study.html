@@ -190,11 +190,13 @@
   .section-nav-label { display: none; }
 }
 @media (max-width: 768px) {
-    nav { padding: 20px 24px; } nav ul { gap: 16px; flex-wrap: wrap; }
+    nav { padding: 20px 24px; } nav.scrolled { padding-left: 24px; padding-right: 24px; } nav ul { gap: 12px; flex-wrap: nowrap; font-size: 13px; } nav ul a { white-space: nowrap; }
     .hero { padding: 0 24px 64px; } section { padding: 60px 24px; } .divider { margin: 0 24px; }
     .problem-grid { grid-template-columns: 1fr; } .research-split { grid-template-columns: 1fr; } .reflection-grid { flex-direction: column; } .reflection-divider { display: none; }
     .solution-item { grid-template-columns: 1fr; } .goal-bar { flex-direction: column; gap: 12px; }
-    .chapter-meta { padding-left: 0; } .chapter-img-row { flex-direction: column; } footer { flex-direction: column; gap: 12px; text-align: center; }
+    .chapter-meta { padding-left: 0; } .chapter-img-row { flex-direction: column; } footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+    .evo-spine-line, .evo-spine-fill { display: none; }
+    .vis-spine { display: none; }
     .section-nav { display: none; }
   }
 /* ── Footer ── */
@@ -293,7 +295,7 @@ body.using-mouse { cursor: none; }
 
 <nav aria-label="Main navigation">
   <ul>
-    <li><a href="index.html">← Anna Iarinovskaia</a></li>
+    <li><a href="index.html">← AI</a></li>
     <li><a href="index.html#work">work</a></li>
     <li><a href="index.html#about">about</a></li>
     <li><a href="contact.html">contact</a></li>
