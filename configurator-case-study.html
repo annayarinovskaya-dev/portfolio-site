@@ -107,7 +107,8 @@
   /* ── Sections ── */
   section { padding: 80px 48px; }
   .section-inner { max-width: 900px; margin: 0 auto; }
-  .section-label { font-family: var(--sans); font-size: 11px; color: var(--text-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; }
+  .section-label { font-family: var(--sans); font-size: 11px; color: var(--text-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   h2 { font-family: var(--sans); font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; color: var(--text); }
   h2 em { font-style: italic; color: var(--text-mid); }
   p { color: var(--text-mid); font-size: 16px; line-height: 1.8; max-width: 620px; }
