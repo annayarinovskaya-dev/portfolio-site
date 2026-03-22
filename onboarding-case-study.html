@@ -163,9 +163,9 @@ nav ul a:hover::after { right: 0; }
   animation: fadeUp 0.8s 0.15s ease both;
 }
 .hero-meta {
-  display: flex; gap: 48px; margin-top: 48px;
-  padding-top: 40px; border-top: 1px solid var(--border);
-  animation: fadeUp 0.8s 0.2s ease both; flex-wrap: wrap;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px 24px;
+  margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s 0.2s ease both;
 }
 .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
 .hero-meta-label {
@@ -360,6 +360,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   border-top: 1px solid var(--border, rgba(0,0,0,0.1));
   gap: 24px;
 }
+@media (max-width: 768px) { .case-nav { padding-left: 24px; padding-right: 24px; } }
 .case-nav-link {
   display: flex;
   flex-direction: column;
@@ -424,7 +425,7 @@ body.using-mouse { cursor: none; }
 
 <nav id="mainNav" aria-label="Main navigation">
   <ul>
-    <li><a href="index.html">← AI</a></li>
+    <li><a href="index.html">← anna iarinovskaia</a></li>
     <li><a href="index.html#work">work</a></li>
     <li><a href="index.html#about">about</a></li>
     <li><a href="contact.html">contact</a></li>
