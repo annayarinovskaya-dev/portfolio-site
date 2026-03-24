@@ -624,15 +624,30 @@ document.querySelectorAll('a, .project-card').forEach(el => {
 });
 
 // ── Scroll reveal ────────────────────────────────────────────
+window._inViewAtLoad = new Set();
+const revealEls = document.querySelectorAll('.reveal');
+
+revealEls.forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < window.innerHeight && r.bottom > 0) window._inViewAtLoad.add(el);
+});
+
+// Stagger in-view elements after the name animation (~1.1s in)
+let stagger = 0;
+window._inViewAtLoad.forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 1100 + stagger);
+  stagger += 150;
+});
+
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
+    if (e.isIntersecting && !window._inViewAtLoad.has(e.target)) {
       e.target.classList.add('visible');
       io.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+revealEls.forEach(el => { if (!window._inViewAtLoad.has(el)) io.observe(el); });
 
 // ── Card 3D tilt ─────────────────────────────────────────────
 document.querySelectorAll('.project-card').forEach(card => {
@@ -981,13 +996,15 @@ document.querySelectorAll('a, .project-card').forEach(el => {
 // ── Scroll reveal ────────────────────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
+    if (e.isIntersecting && !(window._inViewAtLoad && window._inViewAtLoad.has(e.target))) {
       e.target.classList.add('visible');
       io.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal').forEach(el => {
+  if (!(window._inViewAtLoad && window._inViewAtLoad.has(el))) io.observe(el);
+});
 
 // ── Card 3D tilt ─────────────────────────────────────────────
 document.querySelectorAll('.project-card').forEach(card => {
@@ -1333,13 +1350,15 @@ document.querySelectorAll('a, .project-card').forEach(el => {
 // ── Scroll reveal ────────────────────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
+    if (e.isIntersecting && !(window._inViewAtLoad && window._inViewAtLoad.has(e.target))) {
       e.target.classList.add('visible');
       io.unobserve(e.target);
     }
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal').forEach(el => {
+  if (!(window._inViewAtLoad && window._inViewAtLoad.has(el))) io.observe(el);
+});
 
 // ── Card 3D tilt ─────────────────────────────────────────────
 document.querySelectorAll('.project-card').forEach(card => {
