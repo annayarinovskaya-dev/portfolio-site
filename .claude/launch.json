@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "portfolio",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "5555"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "/Users/annaiarinovskaia/Documents/portfolio-site/Portfolio/.claude/worktrees/vibrant-cori", "-p", "5555", "--no-clipboard"],
       "port": 5555
     }
   ]
