@@ -54,64 +54,45 @@
   }
   nav ul a:hover::after { right: 0; }
 
-  /* ── Section sidebar nav ── */
-  .section-nav {
-    position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
-    z-index: 50; display: flex; flex-direction: column; align-items: center;
-    opacity: 0; transition: opacity 0.4s ease;
-  }
-  .section-nav.visible { opacity: 1; }
-  .section-nav-track { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; }
-  .section-nav-track::before {
-    content: ''; position: absolute; left: 50%; top: 8px; bottom: 8px;
-    width: 1px; background: var(--border-solid); transform: translateX(-50%);
-  }
-  .section-nav-item {
-    position: relative; display: flex; align-items: center;
-    padding: 12px 0; text-decoration: none;
-  }
-  .section-nav-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--border-solid); border: 1.5px solid var(--border-solid);
-    transition: background 0.3s, transform 0.3s, border-color 0.3s;
-    flex-shrink: 0; position: relative; z-index: 1;
-  }
-  .section-nav-item.active .section-nav-dot {
-    background: var(--accent); border-color: var(--accent); transform: scale(1.4);
-  }
-  .section-nav-label {
-    position: absolute; left: 18px; font-size: 10px; color: var(--text-mid);
-    letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
-    opacity: 0; transition: opacity 0.2s; pointer-events: none;
-    background: var(--bg); padding: 2px 6px; border-radius: 4px;
-  }
-  .section-nav-item:hover .section-nav-label,
-  .section-nav-item.active .section-nav-label { opacity: 1; }
-
-  /* ── Hero ── */
-  .hero {
-    min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 80px 48px 80px; position: relative; overflow: hidden;
-  }
-  .hero-bg { display: none; }
-  .hero-grid { display: none; }
-  .hero-tag { font-family: var(--sans); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 24px; animation: fadeUp 0.8s ease both; }
-  .hero-title { font-family: var(--sans); font-size: clamp(48px, 7vw, 96px); line-height: 1.0; font-weight: 700; letter-spacing: -0.025em; max-width: 900px; color: var(--text); animation: fadeUp 0.8s 0.1s ease both; }
-  .hero-title em { font-style: italic; color: var(--text-mid); }
-  .hero-meta { display: flex; gap: 48px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); animation: fadeUp 0.8s 0.2s ease both; flex-wrap: wrap; }
-  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta-label { font-family: var(--sans); font-size: 10px; color: var(--text-mid); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
-  .hero-meta-value { font-size: 14px; color: var(--text); font-weight: 400; }
-  .hero-scroll { display: none; }
+  /* ── Two-panel layout ── */
+  .page-layout { display: flex; align-items: flex-start; min-height: calc(100vh - 72px); margin-top: 72px; }
+  .left-panel { position: sticky; top: 72px; width: 34%; min-width: 280px; max-width: 400px; height: calc(100vh - 72px); overflow-y: auto; padding: 40px 32px 40px 44px; border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; scrollbar-width: none; }
+  .left-panel::-webkit-scrollbar { display: none; }
+  .left-panel-inner { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+  .left-title { font-family: var(--sans); font-size: clamp(24px, 2.4vw, 34px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 12px; }
+  .left-title em { font-style: italic; color: var(--text-mid); }
+  .left-desc { font-size: 15px; color: var(--text-mid); line-height: 1.65; opacity: 0.85; }
+  .left-nav { padding-top: 24px; display: flex; flex-direction: column; }
+  .left-nav-item { display: flex; align-items: center; gap: 14px; padding: 13px 0; text-decoration: none; color: var(--text-mid); border-bottom: 1px solid rgba(0,0,0,0.06); transition: color 0.2s; position: relative; overflow: hidden; }
+  .left-nav-item:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+  .left-nav-item::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 0; height: 1px; background: var(--accent); transition: width 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .left-nav-item.active::before { width: 20px; }
+  .left-nav-item.active { color: var(--text); padding-left: 28px; }
+  .left-nav-num { font-size: 9px; letter-spacing: 0.12em; color: var(--accent); opacity: 0.5; font-weight: 600; min-width: 20px; transition: opacity 0.2s; }
+  .left-nav-item.active .left-nav-num { opacity: 1; }
+  .left-nav-label { font-size: 13px; font-weight: 400; transition: font-weight 0.2s; }
+  .left-nav-item.active .left-nav-label { font-weight: 600; }
+  .left-nav-item:hover { color: var(--text); }
+  .right-panel { flex: 1; min-width: 0; }
+  .right-panel .hero-image { padding: 0 48px; margin: 48px 0 0; }
+  .right-panel .hero-image .img-frame { border-radius: 12px; overflow: hidden; }
+  .right-panel .hero-image img { width: 100%; display: block; }
+  .project-meta-bar { display: flex; padding: 20px 48px; gap: 0; }
+  .pmeta-item { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 24px; border-right: 1px solid rgba(0,0,0,0.07); }
+  .pmeta-item:first-child { padding-left: 0; }
+  .pmeta-item:last-child { padding-right: 0; border-right: none; }
+  .pmeta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-mid); opacity: 0.5; }
+  .pmeta-value { font-size: 15px; color: var(--text); font-weight: 400; line-height: 1.4; }
+  .right-panel section { padding: 64px 48px; }
 
   /* ── Sections ── */
   section { padding: 80px 48px; }
-  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-inner { max-width: none; }
   .section-label { font-family: var(--sans); font-size: 11px; color: var(--text-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  h2 { font-family: var(--sans); font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; color: var(--text); }
+  h2 { font-family: var(--sans); font-size: clamp(20px, 2.6vw, 30px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; color: var(--text); }
   h2 em { font-style: italic; color: var(--text-mid); }
-  p { color: var(--text-mid); font-size: 16px; line-height: 1.8; max-width: 620px; }
+  p { color: var(--text-mid); font-size: 15px; line-height: 1.8; max-width: 620px; }
   p + p { margin-top: 16px; }
   .divider { display: none; }
 
@@ -187,19 +168,23 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   
-@media (max-width: 1100px) {
-  .section-nav-label { display: none; }
+@media (max-width: 960px) {
+  .page-layout { flex-direction: column; margin-top: 64px; }
+  .left-panel { position: static; width: 100%; max-width: none; height: auto; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); padding: 40px 24px 32px; }
+  .left-nav { display: none; }
+  .project-meta-bar { padding: 16px 24px; flex-wrap: wrap; gap: 12px; }
+  .pmeta-item { border-right: none; padding: 0; min-width: 40%; }
+  .right-panel section { padding: 48px 24px; }
 }
 @media (max-width: 768px) {
     nav { padding: 20px 24px; } nav.scrolled { padding-left: 24px; padding-right: 24px; } nav ul { gap: 12px; flex-wrap: nowrap; font-size: 13px; } nav ul a { white-space: nowrap; }
-    .hero { padding: 0 24px 64px; } section { padding: 60px 24px; } .divider { margin: 0 24px; }
+    section { padding: 60px 24px; } .divider { margin: 0 24px; }
     .problem-grid { grid-template-columns: 1fr; } .research-split { grid-template-columns: 1fr; } .reflection-grid { flex-direction: column; } .reflection-divider { display: none; }
     .solution-item { grid-template-columns: 1fr; } .goal-bar { flex-direction: column; gap: 12px; }
     .chapter-meta { padding-left: 0; } .chapter-img-row { flex-direction: column; } footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
     .evo-spine-line, .evo-spine-fill { display: none; }
     .vis-spine { display: none; }
     .case-nav { padding: 40px 24px; }
-    .section-nav { display: none; }
   }
 /* ── Footer ── */
 footer {
@@ -305,46 +290,65 @@ body.using-mouse { cursor: none; }
 </nav>
 
 <!-- Left section navigation -->
-<div class="section-nav" id="sectionNav">
-  <div class="section-nav-track">
-    <a href="#overview" class="section-nav-item" data-section="overview">
-      <span class="section-nav-dot"></span>
-      <span class="section-nav-label">Overview</span>
-    </a>
-    <a href="#problem" class="section-nav-item" data-section="problem">
-      <span class="section-nav-dot"></span>
-      <span class="section-nav-label">Problem</span>
-    </a>
-    <a href="#research" class="section-nav-item" data-section="research">
-      <span class="section-nav-dot"></span>
-      <span class="section-nav-label">Research</span>
-    </a>
-    <a href="#evolution" class="section-nav-item" data-section="evolution">
-      <span class="section-nav-dot"></span>
-      <span class="section-nav-label">Evolution</span>
-    </a>
-    <a href="#impact" class="section-nav-item" data-section="impact">
-      <span class="section-nav-dot"></span>
-      <span class="section-nav-label">Impact</span>
-    </a>
+<div class="page-layout">
+
+<!-- LEFT PANEL -->
+<aside class="left-panel" id="leftPanel">
+  <div class="left-panel-inner">
+    <div class="left-top">
+      <h1 class="left-title">Energy Measures<br><em>Configurator</em></h1>
+      <p class="left-desc">A tool that helps asset managers explore renovation scenarios, improve energy efficiency, and optimize investment costs.</p>
+    </div>
+    <div class="left-nav" id="leftNav" role="navigation" aria-label="Case study sections">
+      <a href="#overview" class="left-nav-item" data-section="overview">
+        <span class="left-nav-num">01</span>
+        <span class="left-nav-label">Overview</span>
+      </a>
+      <a href="#problem" class="left-nav-item" data-section="problem">
+        <span class="left-nav-num">02</span>
+        <span class="left-nav-label">Problem</span>
+      </a>
+      <a href="#research" class="left-nav-item" data-section="research">
+        <span class="left-nav-num">03</span>
+        <span class="left-nav-label">Research</span>
+      </a>
+      <a href="#evolution" class="left-nav-item" data-section="evolution">
+        <span class="left-nav-num">04</span>
+        <span class="left-nav-label">Evolution</span>
+      </a>
+      <a href="#impact" class="left-nav-item" data-section="impact">
+        <span class="left-nav-num">05</span>
+        <span class="left-nav-label">Impact</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<!-- RIGHT PANEL -->
+<main class="right-panel" id="rightPanel">
+<div class="hero-image">
+  <div class="img-frame">
+    <img src="configurator-header.png" alt="Configurator screens">
   </div>
 </div>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-tag">Case Study · B2B Platform · 2024–2025</div>
-  <h1 class="hero-title">Energy Measures<br /><em>Configurator</em></h1>
-  <div class="hero-meta">
-    <div class="hero-meta-item"><span class="hero-meta-label">Role</span><span class="hero-meta-value">Product Designer</span></div>
-    <div class="hero-meta-item"><span class="hero-meta-label">Team</span><span class="hero-meta-value">PM · Engineers · Energy/ESG</span></div>
-    <div class="hero-meta-item"><span class="hero-meta-label">Timeline</span><span class="hero-meta-value">3–4 months + ongoing</span></div>
-    <div class="hero-meta-item"><span class="hero-meta-label">Tools</span><span class="hero-meta-value">Figma · Miro · Blender</span></div>
+<div class="project-meta-bar">
+  <div class="pmeta-item">
+    <span class="pmeta-label">Role</span>
+    <span class="pmeta-value">Product Designer</span>
   </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-<div class="divider"></div>
+  <div class="pmeta-item">
+    <span class="pmeta-label">Team</span>
+    <span class="pmeta-value">PM · Engineers · Energy/ESG</span>
+  </div>
+  <div class="pmeta-item">
+    <span class="pmeta-label">Timeline</span>
+    <span class="pmeta-value">3–4 months + ongoing</span>
+  </div>
+  <div class="pmeta-item">
+    <span class="pmeta-label">Tools</span>
+    <span class="pmeta-value">Figma · Miro · Blender</span>
+  </div>
+</div>
 
 <section id="overview">
   <div class="section-inner">
@@ -499,6 +503,8 @@ body.using-mouse { cursor: none; }
     </div>
 </section>
 
+</main>
+</div>
 
 <div class="case-nav">
   <a href="onboarding-case-study.html" class="case-nav-link prev">
@@ -640,31 +646,22 @@ body.using-mouse { cursor: none; }
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // Left section sidebar nav
-  const sectionNavEl = document.getElementById('sectionNav');
-  const sectionItems = sectionNavEl.querySelectorAll('.section-nav-item');
+  // Left panel section nav
+  const leftNavEl = document.getElementById('leftNav');
+  const leftNavItems = leftNavEl ? Array.from(leftNavEl.querySelectorAll('.left-nav-item')) : [];
   const sections = ['overview','problem','research','evolution','impact'].map(id => document.getElementById(id)).filter(Boolean);
 
   window.addEventListener('scroll', () => {
-    // Show sidebar after scrolling past hero
-    const heroH = document.querySelector('.hero')?.offsetHeight || 400;
-    const caseNav = document.querySelector('.case-nav');
-  const caseNavTop = caseNav ? caseNav.getBoundingClientRect().top : Infinity;
-  const pastHero = window.scrollY > heroH * 0.6;
-  const beforeCaseNav = caseNavTop > window.innerHeight * 0.8;
-  sectionNavEl.classList.toggle('visible', pastHero && beforeCaseNav);
-
-    // Highlight active section
     let active = 0;
     sections.forEach((sec, i) => {
       const top = sec.getBoundingClientRect().top;
       if (top < window.innerHeight * 0.5) active = i;
     });
-    sectionItems.forEach((item, i) => item.classList.toggle('active', i === active));
+    leftNavItems.forEach((item, i) => item.classList.toggle('active', i === active));
   });
 
-  // Add cursor grow to sidebar items
-  sectionItems.forEach(item => {
+  // Add cursor grow to left-nav items
+  leftNavItems.forEach(item => {
     item.addEventListener('mouseenter', () => dot.classList.add('grow'));
     item.addEventListener('mouseleave', () => dot.classList.remove('grow'));
   });
