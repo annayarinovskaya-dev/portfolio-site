@@ -74,23 +74,25 @@
   .left-nav-item.active .left-nav-label { font-weight: 600; }
   .left-nav-item:hover { color: var(--text); }
   .right-panel { flex: 1; min-width: 0; }
-  .project-meta-bar { display: flex; padding: 20px 48px; border-bottom: 1px solid rgba(0,0,0,0.07); gap: 0; }
+  .right-panel .hero-image { padding: 0 48px; margin: 48px 0 0; }
+  .right-panel .hero-image .img-frame { border-radius: 12px; overflow: hidden; }
+  .right-panel .hero-image img { width: 100%; display: block; }
+  .project-meta-bar { display: flex; padding: 20px 48px; gap: 0; }
   .pmeta-item { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 24px; border-right: 1px solid rgba(0,0,0,0.07); }
   .pmeta-item:first-child { padding-left: 0; }
   .pmeta-item:last-child { padding-right: 0; border-right: none; }
   .pmeta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-mid); opacity: 0.5; }
   .pmeta-value { font-size: 15px; color: var(--text); font-weight: 400; line-height: 1.4; }
-  .right-panel section { border-top: 1px solid rgba(0,0,0,0.08); }
-  .right-panel section:first-of-type { border-top: none; }
+  .right-panel section { padding: 64px 48px; }
 
   /* ── Sections ── */
   section { padding: 80px 48px; }
-  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-inner { max-width: none; }
   .section-label { font-family: var(--sans); font-size: 11px; color: var(--text-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 32px; display: flex; align-items: center; gap: 14px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  h2 { font-family: var(--sans); font-size: clamp(28px, 4vw, 42px); font-weight: 700; line-height: 1.1; margin-bottom: 32px; letter-spacing: -0.02em; color: var(--text); }
+  h2 { font-family: var(--sans); font-size: clamp(20px, 2.6vw, 30px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; color: var(--text); }
   h2 em { font-style: italic; color: var(--text-mid); }
-  p { color: var(--text-mid); font-size: 16px; line-height: 1.8; max-width: 620px; }
+  p { color: var(--text-mid); font-size: 15px; line-height: 1.8; max-width: 620px; }
   p + p { margin-top: 16px; }
   .divider { display: none; }
 
@@ -172,6 +174,7 @@
   .left-nav { display: none; }
   .project-meta-bar { padding: 16px 24px; flex-wrap: wrap; gap: 12px; }
   .pmeta-item { border-right: none; padding: 0; min-width: 40%; }
+  .right-panel section { padding: 48px 24px; }
 }
 @media (max-width: 768px) {
     nav { padding: 20px 24px; } nav.scrolled { padding-left: 24px; padding-right: 24px; } nav ul { gap: 12px; flex-wrap: nowrap; font-size: 13px; } nav ul a { white-space: nowrap; }
@@ -296,7 +299,7 @@ body.using-mouse { cursor: none; }
       <h1 class="left-title">Energy Measures<br><em>Configurator</em></h1>
       <p class="left-desc">A tool that helps asset managers explore renovation scenarios, improve energy efficiency, and optimize investment costs.</p>
     </div>
-    <nav class="left-nav" id="leftNav" role="navigation" aria-label="Case study sections">
+    <div class="left-nav" id="leftNav" role="navigation" aria-label="Case study sections">
       <a href="#overview" class="left-nav-item" data-section="overview">
         <span class="left-nav-num">01</span>
         <span class="left-nav-label">Overview</span>
@@ -317,13 +320,17 @@ body.using-mouse { cursor: none; }
         <span class="left-nav-num">05</span>
         <span class="left-nav-label">Impact</span>
       </a>
-    </nav>
+    </div>
   </div>
 </aside>
 
 <!-- RIGHT PANEL -->
 <main class="right-panel" id="rightPanel">
-
+<div class="hero-image">
+  <div class="img-frame">
+    <img src="configurator-header.png" alt="Configurator screens">
+  </div>
+</div>
 <div class="project-meta-bar">
   <div class="pmeta-item">
     <span class="pmeta-label">Role</span>
