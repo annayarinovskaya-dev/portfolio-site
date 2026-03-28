@@ -141,38 +141,40 @@ nav ul a:hover::after { right: 0; }
 
 /* ── Hero ── */
 .hero {
-  min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 80px 48px 80px; position: relative; overflow: hidden;
-  padding-top: calc(80px + 80px);
+  padding-top: calc(80px + 96px);
+  padding-bottom: 0;
+  position: relative;
 }
-.hero-tag {
-  font-size: 11px; color: var(--accent); letter-spacing: 0.14em;
-  text-transform: uppercase; margin-bottom: 24px;
-  animation: fadeUp 0.8s ease both;
+.hero-text {
+  padding: 0 40px 72px;
+  animation: fadeUp 0.8s 0.05s ease both;
 }
 .hero-title {
-  font-family: var(--sans); font-size: clamp(48px, 7vw, 88px);
-  line-height: 1.0; font-weight: 700; letter-spacing: -0.025em;
-  max-width: 900px; color: var(--text);
-  animation: fadeUp 0.8s 0.1s ease both;
+  font-family: var(--sans); font-size: clamp(40px, 5.5vw, 76px);
+  line-height: 1.05; font-weight: 700; letter-spacing: -0.025em;
+  color: var(--text);
 }
-.hero-title em { font-style: italic; color: var(--text-mid); }
 .hero-sub {
-  font-size: 18px; color: var(--text-mid); max-width: 620px;
-  line-height: 1.6; margin-top: 20px;
-  animation: fadeUp 0.8s 0.15s ease both;
+  font-size: 18px; color: var(--text-mid);
+  line-height: 1.6; margin-top: 28px;
 }
 .hero-meta {
-  display: flex; gap: 48px; margin-top: 48px;
-  padding-top: 40px; border-top: 1px solid var(--border);
-  animation: fadeUp 0.8s 0.2s ease both; flex-wrap: wrap;
+  display: flex; flex-direction: row; gap: 48px;
+  margin-top: 40px;
 }
 .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
 .hero-meta-label {
   font-size: 10px; font-weight: 400; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--text-mid); opacity: 0.6;
 }
-.hero-meta-value { font-size: 14px; color: var(--text); font-weight: 400; }
+.hero-meta-value { font-size: 14px; color: var(--text); font-weight: 400; white-space: nowrap; }
+.hero-image {
+  padding: 0 40px;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+.hero-image img {
+  width: 100%; height: auto; display: block;
+}
 
 /* ── Divider ── */
 .divider { display: none; }
@@ -319,7 +321,8 @@ p:last-child { margin-bottom: 0; }
 /* ── Responsive ── */
 @media (max-width: 768px) {
   nav { padding: 20px 24px; } nav.scrolled { padding-left: 24px; padding-right: 24px; } nav ul { gap: 12px; flex-wrap: nowrap; font-size: 13px; } nav ul a { white-space: nowrap; }
-  .hero { padding: calc(72px + 48px) 24px 64px; }
+  .hero { padding-top: calc(72px + 48px); }
+  .hero-text { padding: 0 24px 48px; }
   section { padding: 60px 24px; }
   .divider { margin: 0 24px; }
   .snapshot-grid { grid-template-columns: 1fr; }
@@ -360,6 +363,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   border-top: 1px solid var(--border, rgba(0,0,0,0.1));
   gap: 24px;
 }
+@media (max-width: 768px) { .case-nav { padding-left: 24px; padding-right: 24px; } }
 .case-nav-link {
   display: flex;
   flex-direction: column;
@@ -424,7 +428,7 @@ body.using-mouse { cursor: none; }
 
 <nav id="mainNav" aria-label="Main navigation">
   <ul>
-    <li><a href="index.html">← AI</a></li>
+    <li><a href="index.html">← anna iarinovskaia</a></li>
     <li><a href="index.html#work">work</a></li>
     <li><a href="index.html#about">about</a></li>
     <li><a href="contact.html">contact</a></li>
@@ -455,26 +459,30 @@ body.using-mouse { cursor: none; }
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-tag">Case Study · B2B SaaS · Product Design</div>
-  <h1 class="hero-title">Designing Onboarding<br><em>for a Freemium Product</em></h1>
-  <p class="hero-sub">Guiding users from signup to first value through a simplified property creation flow.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Role</span>
-      <span class="hero-meta-value">Product Designer</span>
+  <div class="hero-text">
+    <h1 class="hero-title">Designing Onboarding for a Freemium Product</h1>
+    <p class="hero-sub">Guiding users from signup to first value through a simplified property creation flow.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Role</span>
+        <span class="hero-meta-value">Product Designer</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Scope</span>
+        <span class="hero-meta-value">End-to-end (UX, UI, concept)</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Team</span>
+        <span class="hero-meta-value">PM · Engineers</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Timeline</span>
+        <span class="hero-meta-value">1 month</span>
+      </div>
     </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Scope</span>
-      <span class="hero-meta-value">End-to-end (UX, UI, concept)</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Team</span>
-      <span class="hero-meta-value">PM · Engineers</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Timeline</span>
-      <span class="hero-meta-value">1 month</span>
-    </div>
+  </div>
+  <div class="hero-image">
+    <img src="Onboarding%20case%20study.png" alt="Onboarding flow — property address setup screen">
   </div>
 </section>
 

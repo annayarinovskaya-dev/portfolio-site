@@ -4,8 +4,14 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "/Users/annaiarinovskaia/Documents/portfolio-site/Portfolio/.claude/worktrees/vibrant-cori", "-p", "5555", "--no-clipboard"],
+      "runtimeArgs": ["serve", "/Users/annaiarinovskaia/Documents/portfolio-site", "-l", "5555"],
       "port": 5555
+    },
+    {
+      "name": "portfolio-worktree",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5556", "/Users/annaiarinovskaia/Documents/portfolio-site/.claude/worktrees/blissful-blackwell"],
+      "port": 5556
     }
   ]
 }
