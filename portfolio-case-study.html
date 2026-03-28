@@ -22,6 +22,7 @@
   --hero-mid: #6e6e66;
   --card-bg: #eceae4;
   --max: 900px;
+  --border: rgba(0,0,0,0.08);
 }
 
 html { scroll-behavior: smooth; }
@@ -189,7 +190,7 @@ nav ul a:hover::after { right: 0; }
   margin-bottom: 24px;
   animation: fadeUp 0.8s ease both;
 }
-.hero h1 {
+.hero-title {
   font-family: 'Source Sans 3', sans-serif;
   font-size: clamp(48px, 7vw, 96px);
   font-weight: 700;
@@ -199,18 +200,18 @@ nav ul a:hover::after { right: 0; }
   color: var(--dark);
   animation: fadeUp 0.8s 0.1s ease both;
 }
-.hero h1 em {
+.hero-title em {
   font-style: italic;
   color: var(--mid);
 }
 .hero-meta {
-  display: flex;
-  gap: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 24px;
   margin-top: 48px;
   padding-top: 40px;
   border-top: 1px solid rgba(0,0,0,0.08);
   animation: fadeUp 0.8s 0.2s ease both;
-  flex-wrap: wrap;
 }
 .hero-meta-item {
   display: flex;
@@ -234,11 +235,10 @@ nav ul a:hover::after { right: 0; }
 /* ── Hero Image ── */
 .hero-image {
   width: 100%;
-  max-width: 1100px;
-  margin: 0 auto 80px;
+  max-width: var(--max);
+  margin: 0 auto;
   padding: 0 48px;
 }
-.hero { padding-top: calc(80px + 72px); } /* account for fixed nav height */
 .hero-image .img-frame {
   background: var(--card-bg);
   border-radius: 16px;
@@ -577,6 +577,8 @@ nav ul a:hover::after { right: 0; }
   .hero-attrs { flex-wrap: wrap; gap: 24px; }
   .divider { margin: 0 24px; }
   .highlight-box { padding: 32px 24px; }
+  .content-wrapper { padding: 0 24px !important; }
+  .full-width-section .inner { padding: 0 24px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
   .case-nav { padding: 40px 24px; }
 }
@@ -612,6 +614,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   border-top: 1px solid var(--border, rgba(0,0,0,0.1));
   gap: 24px;
 }
+@media (max-width: 768px) { .case-nav { padding-left: 24px; padding-right: 24px; } }
 .case-nav-link {
   display: flex;
   flex-direction: column;
@@ -668,6 +671,7 @@ a:focus-visible, button:focus-visible {
 body.using-mouse { cursor: none; }
 
 </style>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body>
 
@@ -679,7 +683,7 @@ body.using-mouse { cursor: none; }
 
 <nav id="mainNav" aria-label="Main navigation">
   <ul>
-    <li><a href="index.html">← AI</a></li>
+    <li><a href="index.html">← anna iarinovskaia</a></li>
     <li><a href="index.html#work">work</a></li>
     <li><a href="index.html#about">about</a></li>
     <li><a href="contact.html">contact</a></li>
@@ -711,7 +715,7 @@ body.using-mouse { cursor: none; }
 <!-- HERO -->
 <section class="hero">
   <div class="hero-tag">Case Study · B2B SaaS · 2025–Present</div>
-  <h1>Property Portfolio<br><em>Management</em></h1>
+  <h1 class="hero-title">Property Portfolio<br><em>Management</em></h1>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="hero-meta-label">Role</span>
@@ -722,8 +726,8 @@ body.using-mouse { cursor: none; }
       <span class="hero-meta-value">PM · Engineering</span>
     </div>
     <div class="hero-meta-item">
-      <span class="hero-meta-label">Platform</span>
-      <span class="hero-meta-value">B2B SaaS — Purpose Green</span>
+      <span class="hero-meta-label">Scope</span>
+      <span class="hero-meta-value">End-to-end (UX, UI, concept)</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Timeline</span>
@@ -793,7 +797,7 @@ body.using-mouse { cursor: none; }
 </section>
 
 <!-- KEY INSIGHT - DARK -->
-<div style="max-width: var(--max); margin: 0 auto; padding: 0 48px;">
+<div class="content-wrapper" style="max-width: var(--max); margin: 0 auto; padding: 0 48px;">
   <div class="highlight-box">
     <span class="section-label">Key Insight</span>
     <h2 class="section-title" style="font-size: 32px; max-width: 640px;">Prioritize Action, Not Data</h2>
@@ -897,15 +901,15 @@ body.using-mouse { cursor: none; }
 
   <div class="learnings">
     <div class="learning-row">
-      <div class="learning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M176,232H80" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M96,200H160" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M128,32A72,72,0,0,0,56,104c0,23.67,10.66,45.13,28,60a12,12,0,0,1,4,9v3H168v-3a12,12,0,0,1,4-8.95C189.34,149.13,200,127.67,200,104A72,72,0,0,0,128,32Z" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="learning-icon"><i class="ph ph-lightbulb" style="font-size: 18px; color: #c8b89a;"></i></div>
       <p class="learning-text"><strong>Prioritization over data.</strong> Portfolio-level design adds most value through guidance and ranked action — not by surfacing more raw data. Users trusted the system more when it told them where to start.</p>
     </div>
     <div class="learning-row">
-      <div class="learning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M144,16,32,144H128L112,240,224,112H128Z" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="learning-icon"><i class="ph ph-lightning" style="font-size: 18px; color: #c8b89a;"></i></div>
       <p class="learning-text"><strong>Focused scope enables velocity.</strong> Narrowing to Current State and Strategy — rather than building all dimensions at once — allowed rapid prototyping and validation under real data constraints.</p>
     </div>
     <div class="learning-row">
-      <div class="learning-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M40,128H216" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M144,56l72,72-72,72" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="learning-icon"><i class="ph ph-arrow-right" style="font-size: 18px; color: #c8b89a;"></i></div>
       <p class="learning-text"><strong>What's next.</strong> Future iterations will extend the portfolio view to commercial properties, refine scenario customization, and deepen the connection between strategy selection and configurator output.</p>
     </div>
   </div>

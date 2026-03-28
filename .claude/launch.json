@@ -4,8 +4,14 @@
     {
       "name": "portfolio",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "5555", "/Users/annaiarinovskaia/Documents/portfolio-site/Portfolio/.claude/worktrees/condescending-liskov"],
+      "runtimeArgs": ["serve", "/Users/annaiarinovskaia/Documents/portfolio-site", "-l", "5555"],
       "port": 5555
+    },
+    {
+      "name": "portfolio-worktree",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5556", "/Users/annaiarinovskaia/Documents/portfolio-site/.claude/worktrees/blissful-blackwell"],
+      "port": 5556
     }
   ]
 }
