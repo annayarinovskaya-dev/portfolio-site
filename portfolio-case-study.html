@@ -210,7 +210,9 @@
     p { max-width: none; }
     .before-after { grid-template-columns: 1fr; }
     .solution-grid { flex-direction: column; } .solution-divider { display: none; }
-    .reflection-grid { flex-direction: column; } .reflection-divider { display: none; width: 0; margin: 0; }
+    .reflection-grid { flex-direction: column; gap: 32px; } .reflection-divider { display: none; width: 0; margin: 0; }
+    .two-col-layout { flex-direction: column; }
+    .two-col-layout > div { width: 100%; }
     .right-panel .hero-image { padding: 0 24px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
     .case-nav { padding: 40px 24px; }
@@ -322,7 +324,7 @@
 <section id="exploration">
   <div class="section-inner">
     <div class="section-label reveal">Exploration</div>
-    <div style="display:flex;gap:48px;align-items:flex-start;">
+    <div class="two-col-layout" style="display:flex;gap:48px;align-items:flex-start;">
       <div style="flex:1;min-width:0;">
         <h2 class="reveal">Narrowing from complexity <em>to clarity</em></h2>
         <p class="reveal">Early concepts explored multiple tabs across finance, energy, and construction — a natural starting point for a platform managing multi-dimensional assets. But presenting all dimensions at once added cognitive weight and relied on incomplete data sources.</p>
@@ -407,7 +409,7 @@
 <section id="impact">
   <div class="section-inner">
     <div class="section-label reveal">Validation</div>
-    <div style="display:flex;gap:48px;align-items:flex-start;margin-bottom:40px;">
+    <div class="two-col-layout" style="display:flex;gap:48px;align-items:flex-start;margin-bottom:40px;">
       <div style="flex:1;min-width:0;">
         <h2 class="reveal">Tested with real <em>asset managers</em></h2>
         <p class="reveal">The portfolio and strategy features were validated through 8 user testing sessions with asset managers. The roadmap/strategy view consistently emerged as the most valued feature — users appreciated having a clear starting point rather than being presented with all data simultaneously.</p>
