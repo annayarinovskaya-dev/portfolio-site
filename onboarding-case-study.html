@@ -122,6 +122,7 @@ nav ul a:hover::after { right: 0; }
   .project-meta-bar { padding: 16px 24px; flex-wrap: wrap; gap: 12px; }
   .pmeta-item { border-right: none; padding: 0; min-width: 40%; }
   .right-panel section { padding: 48px 24px; }
+  .right-panel .hero-image { padding: 0 24px; }
 }
 @media (max-width: 768px) {
   nav { padding: 20px 24px; } nav ul { gap: 12px; flex-wrap: wrap; }
@@ -278,8 +279,7 @@ p:last-child { margin-bottom: 0; }
 }
 .impact-list li:last-child { border-bottom: none; }
 .impact-list li::before {
-  content: '↗'; color: var(--accent); font-size: 14px;
-  flex-shrink: 0; margin-top: 3px;
+  display: none;
 }
 
 
@@ -295,6 +295,9 @@ p:last-child { margin-bottom: 0; }
   .final-grid { grid-template-columns: 1fr; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
   .case-nav { padding: 40px 24px; }
+  p { max-width: none; }
+  .approach-step p { max-width: none; }
+  .section-inner > p { max-width: none; }
 }
 /* ── Footer ── */
 footer {
@@ -598,12 +601,12 @@ body.using-mouse { cursor: none; }
     <div class="approach-step reveal" style="padding-top: 64px;">
       <div class="step-label">03 — Designing for flexibility and real user constraints</div>
       <h3>Designing for flexibility and real user constraints</h3>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 16px; align-items: start;">
+      <div style="margin-top: 16px;">
         <div>
           <p>Users don't always have complete data — or the same needs. Some are new and need guidance. Others are returning or already familiar with the system. Forcing everyone through a rigid flow would create unnecessary friction and drop-offs.</p>
           <p style="margin-top: 16px;">To address this, I designed onboarding to be flexible and non-blocking:</p>
         </div>
-        <ul class="goal-list" style="margin-top: 0;">
+        <ul class="goal-list" style="margin-top: 16px;">
           <li style="padding-top: 0;">Users can continue at their own pace with a persistent "Continue later" option</li>
           <li>Incomplete inputs are saved as a draft property, ensuring no data is lost</li>
           <li>The system clearly communicates progress and status throughout</li>
@@ -650,10 +653,10 @@ body.using-mouse { cursor: none; }
     <h2 class="reveal">From Guided Setup to<br><em>Self-Serve Access</em></h2>
     <p class="reveal">This shift transformed onboarding from a high-touch, sales-dependent process into a scalable, product-led experience that users can complete independently.</p>
     <ul class="impact-list">
-      <li class="reveal">Reduced empty-state confusion and disorientation for new users</li>
-      <li class="reveal">Shortened time-to-first-value by surfacing property creation immediately</li>
-      <li class="reveal">Enabled self-serve adoption within a freemium model</li>
-      <li class="reveal">Created a scalable onboarding system that no longer depends on manual support</li>
+      <li class="reveal"><div style="width:32px;height:32px;background:rgba(122,98,72,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><circle cx="128" cy="90" r="54" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M24,216a112,112,0,0,1,208,0" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Reduced empty-state confusion and disorientation for new users</li>
+      <li class="reveal"><div style="width:32px;height:32px;background:rgba(122,98,72,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><circle cx="128" cy="128" r="96" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><polyline points="128 72 128 128 184 128" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Shortened time-to-first-value by surfacing property creation immediately</li>
+      <li class="reveal"><div style="width:32px;height:32px;background:rgba(122,98,72,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><polyline points="32 208 96 144 144 192 240 80" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Enabled self-serve adoption within a freemium model</li>
+      <li class="reveal"><div style="width:32px;height:32px;background:rgba(122,98,72,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><rect x="32" y="48" width="192" height="160" rx="8" fill="none" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><line x1="32" y1="104" x2="224" y2="104" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><line x1="88" y1="48" x2="88" y2="104" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><line x1="168" y1="48" x2="168" y2="104" stroke="#c8b89a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Created a scalable onboarding system that no longer depends on manual support</li>
     </ul>
   </div>
 </section>
