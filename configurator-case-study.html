@@ -94,6 +94,7 @@
   h2 { font-family: var(--sans); font-size: clamp(20px, 2.6vw, 30px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; color: var(--text); }
   h2 em { font-style: italic; color: var(--text-mid); }
   p { color: var(--text-mid); font-size: 15px; line-height: 1.8; max-width: 620px; }
+  .right-panel p { max-width: none; }
   p + p { margin-top: 16px; }
   .divider { display: none; }
 
@@ -131,7 +132,7 @@
   .chapter-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid); display: block; margin-bottom: 10px; transition: color 0.35s ease; }
   .evo-chapter.active .chapter-tag { color: var(--accent); }
   .chapter-meta h3 { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-  .chapter-meta p { font-size: 15px; color: var(--text-mid); max-width: 560px; line-height: 1.65; }
+  .chapter-meta p { font-size: 15px; color: var(--text-mid); max-width: none; line-height: 1.65; }
   .chapter-img-row { display: flex; gap: 48px; align-items: flex-start; }
   .vis-spine { width: 40px; flex-shrink: 0; display: flex; justify-content: center; position: relative; z-index: 1; }
   .spine-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--border-solid); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--text-mid); letter-spacing: 0.03em; transition: all 0.35s ease; }
@@ -452,7 +453,7 @@ body.using-mouse { cursor: none; }
       <div class="evo-chapter" data-index="2">
         <div class="chapter-meta">
           <span class="chapter-tag">v3</span>
-          <h3>Standalone configurator — tabbed, data-rich layout</h3>
+          <h3>Standalone configurator — data-rich layout</h3>
           <p>The configurator graduates to a first-class feature: accessible from the main nav as "Konfigurator". A tabbed structure separates 3D view, cost breakdown, ROI calculation, energy data, and decarbonisation path. A persistent right panel shows selected measures at a glance. Full cost tables with transparent calculations per measure — exactly what users asked for.</p>
         </div>
         <div class="chapter-img-row">
