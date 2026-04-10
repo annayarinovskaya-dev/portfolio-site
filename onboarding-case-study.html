@@ -23,7 +23,7 @@
   --sans: 'Source Sans 3', sans-serif;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overscroll-behavior-y: none; }
 
 body {
   background: var(--bg);
@@ -32,6 +32,7 @@ body {
   font-size: 15px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
   }
 
 /* ── Cursor ── */
@@ -84,7 +85,8 @@ nav ul a::after {
 nav ul a:hover::after { right: 0; }
 
 /* ── Two-panel layout ── */
-.page-layout { display: flex; align-items: flex-start; min-height: calc(100vh - 72px); margin-top: 72px; }
+.page-layout { display: flex; align-items: flex-start; margin-top: 72px; }
+.right-panel { overflow-x: clip; }
 .left-panel { position: sticky; top: 72px; width: 34%; min-width: 280px; max-width: 400px; height: calc(100vh - 72px); overflow-y: auto; padding: 40px 32px 40px 44px; border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; scrollbar-width: none; }
 .left-panel::-webkit-scrollbar { display: none; }
 .left-panel-inner { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
@@ -104,14 +106,64 @@ nav ul a:hover::after { right: 0; }
 .left-nav-item.active .left-nav-label { font-weight: 600; }
 .left-nav-item:hover { color: var(--text); }
 .right-panel { flex: 1; min-width: 0; }
-.right-panel .hero-image { padding: 0 48px; margin: 48px 0 0; }
-.right-panel .hero-image .img-frame { border-radius: 12px; overflow: hidden; }
-.right-panel .hero-image img { width: 100%; display: block; }
+/* ── Hero Carousel ── */
+.hero-carousel-wrap { margin: 48px 0 0; position: relative; padding-bottom: 32px; }
+.hero-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 16px;
+  padding: 0 48px 0 48px;
+  scroll-padding-left: 48px;
+  cursor: grab;
+}
+.hero-carousel:active { cursor: grabbing; }
+.hero-carousel::-webkit-scrollbar { display: none; }
+.hero-carousel-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 calc(100% - 48px - 180px);
+  scroll-snap-align: start;
+}
+.hero-carousel-item .slide-label {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.hero-carousel-slide {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #dde8e0;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-carousel-slide .slide-placeholder {
+  color: #8aaa95;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+  user-select: none;
+}
 .project-meta-bar { display: flex; padding: 20px 48px; gap: 0; }
 .pmeta-item { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 0 24px; border-right: 1px solid rgba(0,0,0,0.07); }
 .pmeta-item:first-child { padding-left: 0; }
 .pmeta-item:last-child { padding-right: 0; border-right: none; }
-.pmeta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-mid); opacity: 0.5; }
+.pmeta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-mid); }
 .pmeta-value { font-size: 15px; color: var(--text); font-weight: 400; line-height: 1.4; }
 .right-panel section { padding: 64px 48px; }
 
@@ -122,7 +174,8 @@ nav ul a:hover::after { right: 0; }
   .project-meta-bar { padding: 16px 24px; flex-wrap: wrap; gap: 12px; }
   .pmeta-item { border-right: none; padding: 0; min-width: 40%; }
   .right-panel section { padding: 48px 24px; }
-  .right-panel .hero-image { padding: 0 24px; }
+  .hero-carousel { padding: 0 24px; }
+  .hero-carousel-item { flex: 0 0 calc(100% - 48px); }
 }
 @media (max-width: 768px) {
   nav { padding: 20px 24px; } nav ul { gap: 12px; flex-wrap: wrap; }
@@ -327,7 +380,7 @@ footer p { font-size: 12px; color: var(--text-mid, #888880); }
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 64px 48px;
+  padding: 40px 48px;
   border-top: 1px solid var(--border, rgba(0,0,0,0.1));
   gap: 24px;
 }
@@ -430,9 +483,32 @@ body.using-mouse { cursor: none; }
   </div>
 </aside>
 <main class="right-panel" id="rightPanel">
-<div class="hero-image">
-  <div class="img-frame">
-    <img src="onboarding-header.png" alt="Onboarding flow screens">
+<div class="hero-carousel-wrap">
+  <div class="hero-carousel" id="heroCarousel">
+    <div class="hero-carousel-item">
+      <div class="hero-carousel-slide">
+        <img src="onboarding-slide-1-address.png" alt="Property address">
+      </div>
+      <span class="slide-label">Property address</span>
+    </div>
+    <div class="hero-carousel-item">
+      <div class="hero-carousel-slide">
+        <img src="onboarding-slide-2-property-type.png" alt="Property type">
+      </div>
+      <span class="slide-label">Property type</span>
+    </div>
+    <div class="hero-carousel-item">
+      <div class="hero-carousel-slide">
+        <img src="onboarding-slide-3-details.png" alt="Property details">
+      </div>
+      <span class="slide-label">Property details</span>
+    </div>
+    <div class="hero-carousel-item">
+      <div class="hero-carousel-slide">
+        <img src="onboarding-slide-4-home.png" alt="Home page">
+      </div>
+      <span class="slide-label">Home page</span>
+    </div>
   </div>
 </div>
 <div class="project-meta-bar">
@@ -753,6 +829,26 @@ body.using-mouse { cursor: none; }
     el.addEventListener('mouseenter', () => dot.classList.add('grow'));
     el.addEventListener('mouseleave', () => dot.classList.remove('grow'));
   });
+
+  // ── Hero Carousel ──
+  (function() {
+    const carousel = document.getElementById('heroCarousel');
+    if (!carousel) return;
+    let isDown = false, startX, scrollStart;
+    carousel.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollStart = carousel.scrollLeft;
+    });
+    carousel.addEventListener('mouseleave', () => { isDown = false; });
+    carousel.addEventListener('mouseup', () => { isDown = false; });
+    carousel.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      carousel.scrollLeft = scrollStart - (x - startX);
+    });
+  })();
 </script>
 </body>
 </html>
